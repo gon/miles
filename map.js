@@ -1,6 +1,11 @@
 var directionsDisplayPath;
 var directionsServicePath = new google.maps.DirectionsService();
 var map;
+var currentLocation = kOriginLocation;
+var kOriginLocation = "origin";
+var kDestinationLocation = "destination";
+var _origin;
+var _destination;
 
 function initializePathMap()
 {
@@ -17,14 +22,56 @@ function initializePathMap()
   
   // Add click event to map
   // in order to identify the user's beginning and end locations
-  google.maps.event.addListener(map, 'click', function(event) {getLocation(event);});
+  google.maps.event.addListener(map, 'click', function(mouseEvent) {getClickLocation(mouseEvent.latLng);});
   
   directionsDisplayPath.setMap(map);
 }
 
-function getLocation(LatLng)
+function getClickLocation(latLng)
 {
-  alert(LatLng);
+  var location = currentLocation;
+  var point = new google.maps.LatLng(latLng.lat(), latLng.lng());
+  
+  switch (currentLocation)
+  {
+    case kOriginLocation:
+      _origin = point;
+      location = kDestinationLocation;
+      break;
+    case kDestinationLocation:
+      _destination = point;
+      location = kOriginLocation;
+      break;
+  }
+  
+  // Put a marker on the map
+  setMarker(point, currentLocation, map);
+  
+  currentLocation = location;
+  
+  // If both an origin and destination have been submitted
+  // send the points to the route-getting method
+  if (_origin && _destination)
+  {
+    // TODO get the route 
+  }
+  
+}
+
+function setMarker (point, type, mapForPointer)
+{
+  var marker = new google.maps.Marker({
+      position: point,
+      title:type
+  });
+  
+  // To add the marker to the map, call setMap();
+  marker.setMap(mapForPointer);
+}
+
+function displayRoute (route)
+{
+
 }
 
 function calcPathRoute() {
