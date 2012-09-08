@@ -1,9 +1,14 @@
 var directionsDisplayPath;
 var directionsServicePath = new google.maps.DirectionsService();
 var map;
-var currentLocation = kOriginLocation;
+var geocoder;
+var markers = [];
+
 var kOriginLocation = "origin";
 var kDestinationLocation = "destination";
+var currentLocation = kOriginLocation;
+var elementToUpdate;
+
 var _origin;
 var _destination;
 
@@ -27,6 +32,24 @@ function initializePathMap()
   directionsDisplayPath.setMap(map);
 }
 
+function validateLocation(location)
+{
+ if (location == "")
+ {
+   return;
+ }
+ 
+ // Reverse geocode the point and display the text
+ geocoder = new google.maps.Geocoder();
+ geocoder.geocode( { 'address': location}, function(results, status) {
+       if (status == google.maps.GeocoderStatus.OK) {
+         $(elementToUpdate).empty().append(results[0].formatted_address);
+       } else {
+         alert("Geocode was not successful for the following reason: " + status);
+       }
+     });
+}
+
 function getClickLocation(latLng)
 {
   var location = currentLocation;
@@ -36,10 +59,12 @@ function getClickLocation(latLng)
   {
     case kOriginLocation:
       _origin = point;
+      elementToUpdate = "input[name=" + kOriginLocation + "_input]";
       location = kDestinationLocation;
       break;
     case kDestinationLocation:
       _destination = point;
+      elementToUpdate = "input[name=" + kDestinationLocation + "_input]";
       location = kOriginLocation;
       break;
   }
@@ -47,13 +72,23 @@ function getClickLocation(latLng)
   // Put a marker on the map
   setMarker(point, currentLocation, map);
   
+  // Reverse geocode the point and display the text
+  geocoder = new google.maps.Geocoder();
+  geocoder.geocode( { 'latLng': point}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          $(elementToUpdate).val(results[0].formatted_address);
+        } else {
+          alert("Geocode was not successful for the following reason: " + status);
+        }
+      });
+  
   currentLocation = location;
   
   // If both an origin and destination have been submitted
   // send the points to the route-getting method
   if (_origin && _destination)
   {
-    // TODO get the route 
+    
   }
   
 }
@@ -67,11 +102,15 @@ function setMarker (point, type, mapForPointer)
   
   // To add the marker to the map, call setMap();
   marker.setMap(mapForPointer);
+  if (markers[currentLocation]) {
+    markers[currentLocation].setMap(null);
+  }
+  markers[currentLocation] = marker;
 }
 
 function displayRoute (route)
 {
-
+  
 }
 
 function calcPathRoute() {
