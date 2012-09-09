@@ -15,7 +15,7 @@ function checkForProspect ()
   
 //  $.get('http://jeremylubin.com/get_message.php', function (data) {receiveMessage(3, data);});
   $.ajax({
-          url: 'http://miles.minute.im/get_message.php/?sender=consumer',
+          url: 'http://localhost/~demo/get_message.php/?sender=consumer',
           dataType: 'jsonp',
           success:function (data) {receiveMessage(_prospects.length-1, data);}});
 }
@@ -28,7 +28,7 @@ function addSampleData (sampleCount)
       receiveProspect("@jugglerjer", "25", "male", 50, ["sports", "travel", "Lakers"], false);
     }
     else if (i == 1) {
-      receiveProspect("@awesomepete28", "40", "male", 64, ["technology", "coding", "Star Trek"], false);
+      receiveProspect("@awesomepete28", "40", "male", 64, ["tech", "finance", "Star Trek"], false);
     }
     else if (i == 2) {
       receiveProspect("@planejanefromspain", "28", "female", 64, ["coffee", "architecture", "botany"], false);
@@ -86,7 +86,7 @@ function sendMessage (button)
   //$.get('http://miles.minute.im/miles.php/?sender=business&message=' + message);
   
   $.ajax({
-            url: 'http://miles.minute.im/miles.php/?sender=business&message=' + message,
+            url: 'http://localhost/~demo/miles.php?sender=business&message=' + message,
             dataType: 'jsonp'});
   
 }
@@ -96,7 +96,7 @@ function checkForMessage ()
   
 //  $.get('http://jeremylubin.com/get_message.php', function (data) {receiveMessage(3, data);});
   $.ajax({
-          url: 'http://miles.minute.im/get_message.php/?sender=consumer',
+          url: 'http://localhost/~demo/get_message.php/?sender=consumer',
           dataType: 'jsonp',
           success:function (data) {receiveMessage(_prospects.length-1, data);}});
 }
