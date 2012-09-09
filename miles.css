@@ -23,6 +23,7 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
+  background-color: #535252;
 }
 
 .prospects {
@@ -36,16 +37,21 @@ body {
   margin-bottom: 10px;
 /*  border: 1px solid #ebebeb;*/
   width: 600px;
-  height: 100px;
+  height: 135px;
   -webkit-transition: all .1s ease-in-out 0s;
-  background-color: #7fc3f8;
   padding-left: 50px;
+  
+  background: #E9EAEE;
+  border: 2px solid white;
+  padding: 44px 40px 20px 40px;
+  box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 1px 2px 6px rgba(0,0,0, 0.5);
+  -webkit-box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
 }
 
 .prospect.open {
-  height: 400px;
+  height: 450px;
 /*  border: 1px solid #bfbfbf;*/
-  background-color: #7fc3f8;
 }
 
 .prospect:hover {
@@ -64,6 +70,29 @@ body {
   display: none;
 }
 
+.prospect .name {
+  height: 40px;
+  width: 550px;
+  color: #444;
+  font-size: 24px;
+  line-height: 40px;
+  display: inline-block;
+}
+
+.prospect .name_icon {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  background-position: center center;
+  margin-right: 18px;
+  margin-top: 10px;
+}
+
+.name_text {
+  position: relative;
+  top: 5px;
+}
+
 .prospect .influence_icon {
   height: 20px;
   width: 22px;
@@ -74,11 +103,11 @@ body {
 }
 
 .prospect .influence {
-  height: 60px;
+  height: 40px;
   width: 550px;
-  color: white;
+  color: #444;
   font-size: 24px;
-  line-height: 60px;
+  line-height: 40px;
   display: inline-block;
 }
 
@@ -92,14 +121,15 @@ body {
   width: 19px;
   display: inline-block;
   background-position: center center;
-  margin-right: 23px;
+  margin-right: 21px;
+  margin-left: 2;
   margin-top: 10px;
 }
 
 .prospect .interests {
   height: 40px;
   width: 550px;
-  color: white;
+  color: #444;
   font-size: 24px;
   line-height: 40px;
   display: inline-block;
@@ -107,7 +137,7 @@ body {
 
 .interest_text {
   position: relative;
-  top: -10px;
+  top: 5px;
 }
 
 .prospect .match .score {
@@ -119,6 +149,7 @@ body {
   opacity: 1;
 /*  display: block;*/
   -webkit-transition: all .1s ease-in-out 0s;
+  margin-top: 20px;
 }
 
 .conversation.hidden {
@@ -130,66 +161,80 @@ body {
   display: block;
   width: 550px;
   height: 250px;
-  background-color: white;
 /*  margin-left: 100px;*/
   overflow: auto;
+  
+  background: #FAFAFC;
+  border: 1px solid #A3A3A3;
+  outline: none;
+  line-height: 20px;
+  padding: 9px 10px;
+  color: #2F2F2F;
+  font-size: 24px;
+  
 }
 
 .compose_box {
   position: relative;
-  height: 30px;
-  width: 450px;
+  height: 44px;
+  width: 470px;
   background-color: white;
   display: inline-block;
-  margin-top: 5px;
+  font-size: 24px;
+  overflow: hidden;
 }
 
 .conversation input[name="message"] {
-  width: 390px;
+  width: 470px;
+  height: 44px;
   border: none;
   margin-left: 5px;
-  margin-top: 8px;
+  font-size: 24px;
 }
 
 .conversation input[name="message"]:focus {
   outline: none;
+  font-size: 24px;
 }
 
 .conversation input[name="send"] {
   margin-left: 5px;
-  background: none #c0ffe7;
-  border: none;
   padding: 0;
   width: 95px;
-  height: 30px;
-  margin-top: 5px;
-  position: relative;
-  top: -1px;
+  height: 44px;
+  font-size: 24px;
+  border: 1px solid #2F2F2F;
+  outline: none;
+  background: #393939;
   font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  color: white;
 }
 
 .conversation input[name="send"]:hover {
-  background: none #bdeddb;
-  font-family: 'Open Sans', sans-serif;
+  
 }
 
 .comment {
   display: block;
   margin-top: 10px;
-  width: 300px;
-  padding: 4px;
+/*  width: 300px;*/
+  padding: 4px 12px;
+  clear: both;
 }
 
 .comment.business {
   text-align: left;
   margin-left: 10px;
-  background-color: #c9e9ef;
+/*  background-color: #c9e9ef;*/
+  background-color: #c9c9c9;
   float: left;
 }
 
 .comment.customer {
   text-align: right;
-  background-color: #e2fcf3;
+/*  background-color: #e2fcf3;*/
+  background-color: #70d674;
   float: right;
   margin-right: 10px;
 }
