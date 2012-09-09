@@ -53,6 +53,8 @@ function openProspect (prospect)
 {
   $(prospect).children(".conversation").removeClass("hidden");
   $(prospect).addClass("open");
+  $(prospect).children(".conversation").children(".compose_box").children(".compose").focus();
+  
   
   $(".prospect").css("opacity", "0.5");
   $(prospect).css("opacity", "1");
