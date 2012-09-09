@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #535252;
+}
+
+#splash {
+  display: block;
+  margin: auto;
+  width: 723px;
+}
